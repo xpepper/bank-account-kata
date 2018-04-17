@@ -27,4 +27,11 @@ public class AccountShould {
 
         verify(transactionRepository).addDeposit(100);
     }
+
+    @Test
+    public void store_a_withdraw_transaction() {
+        account.withdrawal(100);
+
+        verify(transactionRepository).addWithdrawal(100);
+    }
 }
