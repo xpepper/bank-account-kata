@@ -2,6 +2,7 @@ package feature;
 
 import com.xpeppers.kata.bankaccount.Account;
 import com.xpeppers.kata.bankaccount.Console;
+import com.xpeppers.kata.bankaccount.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +20,11 @@ public class PrintStatementFeature {
     private Console console;
 
     private Account account;
+    private TransactionRepository transactionRepository = new TransactionRepository();
 
     @Before
     public void setUp() throws Exception {
-        account = new Account();
+        account = new Account(transactionRepository);
     }
 
     @Test
