@@ -2,6 +2,7 @@ package feature;
 
 import com.xpeppers.kata.bankaccount.Account;
 import com.xpeppers.kata.bankaccount.Console;
+import com.xpeppers.kata.bankaccount.StatementPrinter;
 import com.xpeppers.kata.bankaccount.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PrintStatementFeature {
@@ -21,10 +21,11 @@ public class PrintStatementFeature {
 
     private Account account;
     private TransactionRepository transactionRepository = new TransactionRepository();
+    private StatementPrinter statementPrinter = new StatementPrinter();
 
     @Before
     public void setUp() throws Exception {
-        account = new Account(transactionRepository);
+        account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
