@@ -16,12 +16,17 @@ public class PrintStatementFeature {
     @Mock
     private Console console;
 
+    @Mock
+    private Clock clock;
+
     private Account account;
-    private TransactionRepository transactionRepository = new TransactionRepository(new Clock());
-    private StatementPrinter statementPrinter = new StatementPrinter(console);
+    private TransactionRepository transactionRepository;
+    private StatementPrinter statementPrinter;
 
     @Before
     public void setUp() throws Exception {
+        transactionRepository = new TransactionRepository(clock);
+        statementPrinter = new StatementPrinter(console);
         account = new Account(transactionRepository, statementPrinter);
     }
 

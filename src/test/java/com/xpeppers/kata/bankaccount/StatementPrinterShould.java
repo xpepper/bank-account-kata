@@ -1,5 +1,6 @@
 package com.xpeppers.kata.bankaccount;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -18,11 +19,15 @@ public class StatementPrinterShould {
 
     @Mock
     private Console console;
+    private StatementPrinter statementPrinter;
+
+    @Before
+    public void setUp() throws Exception {
+        statementPrinter = new StatementPrinter(console);
+    }
 
     @Test
     public void always_print_the_header_first() {
-        StatementPrinter statementPrinter = new StatementPrinter(console);
-
         statementPrinter.print(EMPTY_LIST);
 
         verify(console).printLine("DATE | AMOUNT | BALANCE");
@@ -30,8 +35,6 @@ public class StatementPrinterShould {
 
     @Test
     public void print_transactions_in_reverse_order() {
-        StatementPrinter statementPrinter = new StatementPrinter(console);
-
         statementPrinter.print(transactionsContaining(
                 aDeposit("01/04/2014", 1000),
                 aWithdrawal("02/04/2014", 100),
