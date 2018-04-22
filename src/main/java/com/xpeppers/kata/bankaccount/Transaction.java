@@ -23,4 +23,12 @@ public class Transaction {
         return reflectionHashCode(this);
 
     }
+
+    public String date() {
+        return date;
+    }
+
+    public int amount() {
+        return amount;
+    }
 }
